@@ -1,3 +1,94 @@
-.container {
-    padding: 0 15px;
+body {
+    padding: 15px;
+    font-family: 'Inter', sans-serif;
+    font-size: 32px;
+    font-weight: 400;
+    line-height: 39px;
+}
+
+.expenses__title {
+    line-height: 39px;
+}
+
+.expenses {
+    width: 950px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    column-gap: 20px;
+    row-gap: 45px;
+}
+
+.rub::after {
+    content: ' руб.';
+}
+
+.moneyInput {
+    display: flex;
+    align-items: center;
+}
+
+.expenses__input {
+    width: 484px;
+    height: 58px;
+    font-size: 32px;
+    border: 1px solid #000;
+    background: rgba(255, 255, 255, 0.20);
+}
+
+.category__select {
+    width: 490px;
+    height: 58px;
+    font-size: 24px;
+    border: 1px solid #000;
+    background: rgba(255, 255, 255, 0.20);
+}
+
+.expenses__btn {
+    width: 370px;
+    height: 58px;
+    background-color: #0094FF;
+    border: none;
+    font-family: 'Inter';
+    font-size: 32px;
+    font-weight: 400;
+    color: #FFFFFF;
+    cursor: pointer;
+}
+
+button:hover {
+    opacity: 0.5;
+}
+
+.label {
+    font-size: 32px;
+    font-weight: 700;
+}
+
+.stats {
+    width: 490px;
+}
+
+.status {
+    color: green;
+}
+
+.status_red {
+    color: red;
+}
+
+.history__list {
+    list-style-position: inside;
+}
+
+.clear__button {
+    width: 484px;
+    height: 58px;
+    background-color: #F00;
+    border: none;
+    font-family: 'Inter';
+    font-size: 32px;
+    font-weight: 400;
+    color: #FFFFFF;
+    cursor: pointer;
 }

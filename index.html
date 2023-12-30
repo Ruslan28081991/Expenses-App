@@ -3,23 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&family=Inter:wght@400;700&family=Manrope:wght@400;700&family=Montserrat:wght@400;700;900&family=Raleway:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="reset.css">
     <link rel="stylesheet" href="style.css">
     <title>Expenses App</title>
 </head>
 <body>
-    <div class="container">
-        <h1 class="expenses__title">Учет расходов</h1>
-        <input 
-            id="expenses__input"
-            class="expenses__input"
-            type="number"
-            placeholder="Введите сумму">
-        <button id="expenses__btn" class="expenses__btn">Добавить</button>
-        <p>Лимит: <span id="limit">10000</span> руб.</p>
-        <p>Сумма: <span id="total">0</span> руб.</p>
-        <p>Статус: <span id="status">Все хорошо</span></p>
-        <h2 class="history__title">История</h2>
-        <div id="history" class="history"></div>
+    <h1 class="expenses__title label">Учет расходов</h1>
+    <div class="expenses">
+        <div class="expenses__input-wrapper">
+            <div class="moneyInput">
+                <input 
+                    id="expensesInput"
+                    class="expenses__input rub"
+                    type="number"
+                    min="1"
+                    placeholder="Введите сумму">
+            </div>
+            <select id="categorySelect" class="category__select">
+                <option hidden="" disabled="" 
+                    selected="" value="Категории">
+                        Категории</option>
+                <option value="Продукты">Продукты</option>
+                <option value="Кафе">Кафе и рестораны</option>
+                <option value="Квартира">Квартира</option>
+                <option value="Авто">Авто</option>
+            </select>
+        </div>
+        
+        <button id="expensesBtn" class="expenses__btn">Добавить</button>
+
+        <div class="stats">
+            <div class="stats__limit">
+                <span class="label">Лимит:</span>
+                <span id="limitValue" class="rub">10000</span>
+                <img 
+                    id="changeLimitBtn"
+                    class="stats__changeLimitBtn"
+                    src="image/image.png" 
+                    alt="картинка для изменения лимита">
+            </div>
+            <div class="stats__total">
+                <span class="label">Всего:</span>
+                <span id="totalValue" class="rub">0</span>
+            </div>
+            <div class="stats__status">
+                <span class="label">Статус:<span>
+                <span id="statusText" class="status">Все хорошо</span>
+            </div>
+        </div>
+        
+        <div class="history__wrapper">
+            <h2 class="history__title label">История</h2>
+            <ol id="historyList" class="history__list">
+                <li></li>
+            </ol>
+        </div>
+
+        <button id="clearBtn" class="clear__button">Сбросить расходы</button>
+
     </div>
     
     
