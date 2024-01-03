@@ -11,18 +11,22 @@ const changeLimitBtn = document.getElementById("changeLimitBtn");
 let expenses = [];
 let limit = parseInt(limitNode.innerText);
 
+const expensesFromStorageString = localStorage.getItem(STORAGE_LABEL_EXPENSES);
+const expensesFromStorage = JSON.parse(expensesFromStorageString);
 const STATUS_IN_LIMIT = "Все хорошо!";
 const STATUS_IN_LIMIT_CLASSNAME = "status";
 const STATUS_OUT_OF_LIMIT = "Лимит привышен!";
 const STATUS_OUT_OF_LIMIT_CLASSNAME = "status_red";
+const STORAGE_LABEL_LIMIT = "limit";
+const STORAGE_LABEL_EXPENSES = "expenses";
 
-// init();
 function initLimit() {
-  const limitFromStorage = parseInt(localStorage.getItem("limit"));
+  const limitFromStorage = parseInt(localStorage.getItem(STORAGE_LABEL_LIMIT));
   if (!limitFromStorage) {
     return;
   }
   limitNode.innerText = limitFromStorage;
+  limit = parseInt(limitNode.innerText);
 }
 initLimit();
 
@@ -58,19 +62,11 @@ const renderHistory = () => {
 };
 
 function render() {
-  // const sum = calculateExpenses(expenses);
   renderHistory();
-  // renderSum(sum);
   renderStatus();
 }
 
 function getExpenseFromUser() {
-  // if (!inputNode.value) {
-  //   return null;
-  // }
-  // const expense = parseInt(inputNode.value);
-  // clearInput();
-  // return expense;
   return parseInt(inputNode.value);
 }
 
@@ -80,7 +76,11 @@ function getSelectCategory() {
 
 function clearInput() {
   inputNode.value = "";
-  // input.value = "";
+}
+
+function saveExpensesToStorage() {
+  const expensesString = JSON.stringify(expenses);
+  localStorage.setItem(STORAGE_LABEL_EXPENSES, expensesString);
 }
 
 function addButtonHandler() {
@@ -97,8 +97,8 @@ function addButtonHandler() {
   }
 
   const newExpense = { amount: currentAmount, category: currentCategory };
-  console.log(newExpense);
   expenses.push(newExpense);
+  saveExpensesToStorage();
   render();
   clearInput(inputNode);
 }
@@ -117,41 +117,9 @@ function changeLimitHandler() {
 
   limitNode.innerText = newLimitValue;
   limit = newLimitValue;
-  localStorage.setItem("limit", newLimitValue);
+  localStorage.setItem(STORAGE_LABEL_LIMIT, newLimitValue);
   render();
 }
-
-// function init() {
-//   statusNode.innerText = STATUS_IN_LIMIT;
-//   totalNode.innerText = calculateExpenses(expenses);
-// }
-
-// function trackExpense(expense) {
-//   expenses.push(expense);
-// }
-
-// function renderHistory(expenses) {
-//   let expensesListHTML = "";
-
-//   expenses.forEach((expense) => {
-//     expensesListHTML += `<li>${expense}</li>`;
-//   });
-
-//   historyListNode.innerHTML = `<ol>${expensesListHTML}</ol>`;
-// }
-
-// function renderSum(sum) {
-//   totalNode.innerText = sum;
-// }
-
-// function renderStatus(sum) {
-//   if (sum <= limit) {
-//     statusNode.innerText = STATUS_IN_LIMIT;
-//   } else {
-//     statusNode.innerText = STATUS_OUT_OF_LIMIT;
-//     statusNode.classList.add(STATUS_OUT_OF_LIMIT_CLASSNAME);
-//   }
-// }
 
 btnNode.addEventListener("click", addButtonHandler);
 clearBtnNode.addEventListener("click", clearButtonHandler);

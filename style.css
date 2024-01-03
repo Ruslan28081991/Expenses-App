@@ -30,15 +30,16 @@ body {
 
 .expenses__input {
     width: 484px;
-    height: 58px;
+    line-height: 58px;
     font-size: 32px;
+    font-family: inherit;
     border: 1px solid #000;
     background: rgba(255, 255, 255, 0.20);
 }
 
 .category__select {
     width: 490px;
-    height: 58px;
+    line-height: 58px;
     font-size: 24px;
     border: 1px solid #000;
     background: rgba(255, 255, 255, 0.20);
@@ -78,6 +79,7 @@ button:hover {
 }
 
 .history__list {
+    list-style: decimal;
     list-style-position: inside;
 }
 
